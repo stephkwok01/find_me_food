@@ -25,7 +25,7 @@ class etl{
       DBConnect();
       if (($handle = fopen($this->filename, 'r')) !== FALSE)
       {
-	while ((($row = fgetcsv($handle)) !== FALSE) && $rowNum < 50) 
+	while (($row = fgetcsv($handle)) !== FALSE) 
 	{
 	  if($rowNum >0){
 	    //Check if cuisine exists in db; insert if does't exist
@@ -100,6 +100,7 @@ $FK_inspection_id);
 	return false;
       }
     } catch(Exception $e){
+      echo($e);
       return false;
     
     }
