@@ -1,10 +1,11 @@
 <?php
 /** 
  * Curl request for get_restaurants()
- */
-// $url = 'https://find-my-thai-food.herokuapp.com/api.php';
+*/
 //Curl request url points to my local server
 $url = 'http://charles.plumgroup.com/~skwok/personal/find_me_food/api.php';
+
+//Added username and pw in curl script for test purposes
 $username = 'testuser';
 $password = 'asdf';
 
@@ -15,7 +16,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Content-
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-$result = curl_exec($ch);
+$result = json_decode(curl_exec($ch), true);
 curl_close($ch);
 
 var_dump($result);

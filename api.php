@@ -16,7 +16,6 @@ if ($_SERVER["CONTENT_TYPE"] != 'application/json') die(json_encode(['success'=>
 
 //call lib.php get_restaurants function
 $restaurants = get_restaurants();
-var_dump($restaurants);
 if($restaurants == FALSE){
   die(json_encode(['success'=>FALSE, 'error'=>'No restaurants available']));
 }
