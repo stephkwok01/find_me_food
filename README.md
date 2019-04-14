@@ -22,5 +22,7 @@ curl.php - performs curl request to api to get list of restaurants. It passes us
 
 api.php - api request to get restaurants. It checks for username and password for security. Then calls function in lib.php to query and return data. 
 
+test.php - test script to chek api call and query separately
+
 ## Schema
 There are two version of the schema provided (DOHMH.png and find_me_food.mwb) These mysql schema includes 5 tables, restaurant, inspection, cuisine, violation, and inspection_type. 
