@@ -28,10 +28,12 @@ class etl{
 	while (($row = fgetcsv($handle)) !== FALSE) 
 	{
 	  if($rowNum >0){
-	    //Check if cuisine exists in db; insert if does't exist
+	    //Check if cuisine exists in db; insert if doesn't exist
 	    if(empty($cuisine) || (in_array($row[7], $cuisine) == false)){
-	      $cuisine_id = DBQuery("INSERT INTO cuisine (`description`) VALUES (?)", $row[7]);
+	      $cuisine_id = DBQuery("INSERT INTO cuisine (description) VALUES (?)", $row[7]);
 	      $cuisine[$cuisine_id] = $row[7];
+	    } else {
+	      $cuisine_id = NULL;
 	    }
 	    //Check if violation exists in db; insert if doesn't exist
 	    if(empty($violation) || in_array($row[10], array_column($violation, 'code')) == false){
@@ -40,6 +42,8 @@ class etl{
 		'code'=>$row[10],
 		'description'=>$row[11]
 	      );
+	    } else {
+	      $violation_id = NULL;
 	    }
 	    //Check if inspection type exists; insert if doesn't exist
 	    if(empty($inspection_type) || (in_array($row[17], $inspection_type) == false )){

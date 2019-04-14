@@ -8,13 +8,27 @@ include 'dblib.php';
  * @param rating $grade - the minimum grade to accept 
  * @return mixed  FALSE OR array (can be empty)
  */
-  function get_restaurants($type, $grade){
+  function get_restaurants(){
     $GLOBALS['last_error'] = '';
     try{
       DBConnect();
-//       $result = DBQuery(
-// 	"");
-
+      $result = DBQuery(
+	"SELECT restaurant_id, name, boro, building, street, zipcode, phone, MAX(grade_date), grade FROM restaurant
+	JOIN cuisine ON FK_cuisine_id = cuisine_id
+	JOIN inspection ON restaurant_id = FK_restaurant_id
+	WHERE (grade = 'A' OR grade = 'B') AND cuisine.description = 'thai' 
+	GROUP BY restaurant_id");
+      if (count($result)) {
+	$restaurants = array();
+	foreach($result as $res){
+	  $restaurants[] = $res;
+	}
+	return $restaurants;
+      } else {
+	$GLOBALS['last_error'] = "no restaurant found";
+	return FALSE;
+      }
+      
     } catch(Exception $e){
       $GLOBALS['last_error'] = $e->getMessage();
       return FALSE;
