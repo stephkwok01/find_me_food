@@ -2,7 +2,7 @@
 ## This is an app for a friend who loves classy thai food
 
 This app does the following: 
-1) Loads the New York City Restaurant Inspection results csv file into a sql database (DOHMH). The database to store this data locates in a remote development server from my current work.
+1) Loads the New York City Restaurant Inspection results csv file into a sql database (DOHMH). The database to store this data locates in a remote development server from my current work. Database can be replicated using the schema provided.
 The csv can be found at: 
 https://data.cityofnewyork.us/api/views/43nn-pn8j/rows.csv?accessType=DOWNLOAD
 
