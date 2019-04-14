@@ -116,9 +116,4 @@ $FK_inspection_id);
   }
 }
 
-/** test **/
-$filePath = "../DOHMH_New_York_City_Restaurant_Inspection_Results.csv";
-$file = new etl($filePath);
-$result = $file->csv_to_db();
-var_dump($result);
 

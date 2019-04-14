@@ -6,7 +6,7 @@ header("Content-type: text/plain");
 //usually check username & pw in db
 if (!isset($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_USER'] != 'testuser' || $_SERVER['PHP_AUTH_PW'] != 'asdf') {
   header("HTTP/1.0 401 Unauthorized");
-  echo("Unauthorized Access");
+  die(json_encode(['success'=>FALSE, 'error'=>'Unauthorized Access']));
   exit;
 }
   
