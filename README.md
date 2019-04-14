@@ -1,6 +1,6 @@
 
 # Find me food 
-## This is an app for a friend who loves classy thai food
+## This is an app for a friend who loves classy thai food in New York City 
 
 This app does the following: 
 1) Loads the New York City Restaurant Inspection results csv file into a sql database (DOHMH). The database to store this data locates in a remote development server. Database can be replicated using 
