@@ -14,8 +14,8 @@ include 'dblib.php';
       DBConnect();
       $result = DBQuery(
 	"SELECT restaurant_id, name, boro, building, street, zipcode, phone, MAX(grade_date) as 'grade_date', grade FROM restaurant
-	JOIN cuisine ON FK_cuisine_id = cuisine_id
-	JOIN inspection ON restaurant_id = FK_restaurant_id
+	LEFT JOIN cuisine ON FK_cuisine_id = cuisine_id
+	LEFT JOIN inspection ON restaurant_id = FK_restaurant_id
 	WHERE (grade = 'A' OR grade = 'B') AND cuisine.description = 'thai'
 	GROUP BY restaurant_id");
       if (count($result)) {
