@@ -1,6 +1,6 @@
 <?php
 /** DATABASE CONFIG **/
 //
-$DATABASE = array('host'=>'twist', 'user'=>'root', 'pass'=>'zbnm15', 'db'=>'DOHMH');
+$DATABASE = array('host'=>'twist.plumgroup.com', 'user'=>'root', 'pass'=>'zbnm15', 'db'=>'DOHMH');
 
 

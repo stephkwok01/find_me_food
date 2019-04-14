@@ -24,6 +24,7 @@ class etl{
       $camis = array();
       
       DBConnect();
+      $start_time = new datetime();
       //Read csv file
       if (($handle = fopen($this->filename, 'r')) !== FALSE)
       {
@@ -102,6 +103,8 @@ $FK_inspection_id);
 	  }
 	  $rowNum++;
 	}
+	$end_time = new datetime();
+	return $end_time - $start_time;
       } else {
 	return false;
       }
@@ -114,8 +117,8 @@ $FK_inspection_id);
 }
 
 /** test **/
-// $filePath = "../DOHMH_New_York_City_Restaurant_Inspection_Results.csv";
-// $file = new etl($filePath);
-// $result = $file->csv_to_db();
-// var_dump($result);
+$filePath = "../DOHMH_New_York_City_Restaurant_Inspection_Results.csv";
+$file = new etl($filePath);
+$result = $file->csv_to_db();
+var_dump($result);
 
