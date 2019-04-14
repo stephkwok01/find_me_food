@@ -2,7 +2,8 @@
 /** 
  * Curl request for get_restaurants()
  */
-$url = 'http://charles.plumgroup.com/~skwok/personal/find_me_food/api.php';
+// $url = 'http://charles.plumgroup.com/~skwok/personal/find_me_food/api.php';
+
 $username = 'testuser';
 $password = 'asdf';
 
