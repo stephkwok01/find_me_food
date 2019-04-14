@@ -16,7 +16,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array("Accept: application/json", "Content-
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-$result = json_encode(curl_exec($ch), true);
+$result = json_decode(curl_exec($ch), true);
 curl_close($ch);
 
 var_dump($result);
