@@ -2,9 +2,9 @@
 include 'dblib.php';
 
 class etl{
- 
   private $filename;
   
+  //create new etl object 
   public function __construct($filename)
     {
         if (!file_exists($filename)) {
@@ -13,9 +13,10 @@ class etl{
         $this->filename = $filename;
     }
  
-
+  //Read csv file, transform date, and insert into DOHMH db
   function csv_to_db(){
     try{
+      //if item is in array, it's in the database also
       $csv = array();
       $violation = array();
       $inspection_type = array();
@@ -23,6 +24,7 @@ class etl{
       $camis = array();
       
       DBConnect();
+      //Read csv file
       if (($handle = fopen($this->filename, 'r')) !== FALSE)
       {
 	while (($row = fgetcsv($handle)) !== FALSE) 
@@ -51,7 +53,7 @@ class etl{
 	      $inspection_type[$inspection_id] = $row[17];
 	    }
 	    //Insert restaurant information 
-	    //check if restaurant already exist in db
+	    //check if restaurant camis exists in database
 	    if(empty($camis) || (in_array($row[0], $camis) == false)){
 	      //Check if cuisine exist in db
 	      if($cuisine_id != NULL){
@@ -66,7 +68,7 @@ class etl{
 	      $restaurant_id = DBQuery(
 	      "INSERT INTO restaurant (camis, name, boro, building, street, zipcode, phone, FK_cuisine_id)
 	      VALUES (?, ?, ?, ?, ?, ?, ?, ?)", $row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6],$FK_cuisine_id);
-	      
+	      //add restaurant id as key in camis array
 	      $camis[$restaurant_id] = $row[0];
 	    }
 	    //Insert insepction information 
@@ -88,6 +90,7 @@ class etl{
 		WHERE type_name = ?", $row[17]);
 	      $FK_inspection_id = $result[0]['inspection_type_id'];
 	    }
+	    //check if dates are empty in csv; convert to mysql DATE format
 	    ($row[15] == '') ? $grade_date = NULL : $grade_date = date("Y-m-d", strtotime($row[15]));
 	    ($row[16] == '') ? $record_date = NULL: $record_date = date("Y-m-d", strtotime($row[16]));
 	    
@@ -98,7 +101,6 @@ class etl{
 $FK_inspection_id);
 	  }
 	  $rowNum++;
-	  
 	}
       } else {
 	return false;
@@ -109,11 +111,11 @@ $FK_inspection_id);
     
     }
   }
- 
 }
 
-$filePath = "../DOHMH_New_York_City_Restaurant_Inspection_Results.csv";
-$file = new etl($filePath);
-$result = $file->csv_to_db();
-var_dump($result);
+/** test **/
+// $filePath = "../DOHMH_New_York_City_Restaurant_Inspection_Results.csv";
+// $file = new etl($filePath);
+// $result = $file->csv_to_db();
+// var_dump($result);
 
