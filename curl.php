@@ -3,7 +3,7 @@
  * Curl request for get_restaurants()
  */
 // $url = 'http://charles.plumgroup.com/~skwok/personal/find_me_food/api.php';
-
+$url = 'https://find-my-thai-food.herokuapp.com/api.php'
 $username = 'testuser';
 $password = 'asdf';
 
