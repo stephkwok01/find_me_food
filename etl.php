@@ -13,10 +13,14 @@ class etl{
         $this->filename = $filename;
     }
  
-  //Read csv file, transform date, and insert into DOHMH db
+  /** 
+  * function to load csv file data into a mysql database
+  * It first opens the csv file, reads it line by line
+  * checks for repeated data and then insert data into DOHMH db
+  */
   function csv_to_db(){
     try{
-      //if item is in array, it's in the database also
+      //Initialize associative array to store items that exist in the database already
       $csv = array();
       $violation = array();
       $inspection_type = array();

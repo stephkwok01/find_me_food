@@ -3,9 +3,7 @@
 include 'dblib.php';
 
 /**
- * Gets a list of restaurants that satisfy the criteria 
- * @param string $type  - the type of cuisine 
- * @param rating $grade - the minimum grade to accept 
+ * Gets a list of restaurants that satisfy the criteria
  * @return arrray  FALSE or array (can be empty)
  */
   function get_restaurants(){
@@ -16,7 +14,7 @@ include 'dblib.php';
 	"SELECT restaurant_id, name, boro, building, street, zipcode, phone, MAX(grade_date) as 'grade_date', grade FROM restaurant
 	LEFT JOIN cuisine ON FK_cuisine_id = cuisine_id
 	LEFT JOIN inspection ON restaurant_id = FK_restaurant_id
-	WHERE (grade = 'A' OR grade = 'B') AND cuisine.description = 'thai'
+	WHERE (grade = 'A' OR grade = 'B') AND cuisine.description = 'Thai'
 	GROUP BY restaurant_id");
       if (count($result)) {
 	$restaurants = array();

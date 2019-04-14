@@ -3,7 +3,7 @@
  * Curl request for get_restaurants()
 */
 //Curl request url points to my local server
-$url = 'http://charles.plumgroup.com/~skwok/personal/find_me_food/api.php';
+$url = 'http://charles.plumgroup.com/~skwok/personal/find_me_food/api.php?thai';
 
 //Added username and pw in curl script for test purposes
 $username = 'testuser';
