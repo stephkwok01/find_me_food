@@ -3,7 +3,7 @@ include_once 'etl.php';
 include_once 'dblib.php';
 
 /** 
- * Create log file for test results
+ * Create log file for test results in logs/ directory
  */
 $today = date("Y-m-d");
 $LOGFILE = 'test_results_'.$today.'.log';
@@ -168,11 +168,73 @@ function check_data_completeness(){
 }
 $complete_res = check_data_completeness();
 
-
-
-
 /** 
+ * Test data transformation using arrays 
+ * Reads a new csv file and make sure information from each row will be upload to the right db
+ * It follows the general etl function but without database inserts
+ * Instead it counts the number of rows to be inserted to make sure it matches data from csv file
+ */
+function test_data_transformation(){
+  GLOBAL $LOGFILE;
+  //Open log file 
+  $loghandle = fopen('logs/'.$LOGFILE, 'a+') or die('cannot open file');
+  fwrite($loghandle, "----------Test data transformation: test_data_transformation()----------\n");
+  
+  //Initialized count var & array
+  $filename = 'test_transformation.csv';
+  $rowNum = 0;
+  $violation_count = 0;
+  $cuisine_count = 0;
+  $inspection_type_count = 0;
+  
+  $violation = array();
+  $inspection_type = array();
+  $cuisine = array();
+  $camis = array();
+      
+  if (($handle = fopen($filename, 'r')) !== FALSE)
+  {
+    while (($row = fgetcsv($handle)) !== FALSE)
+    {
+      if($rowNum > 0){
+	//Check if cuisine exists in db; insert if doesn't exist
+	if(empty($cuisine) || (in_array($row[7], $cuisine) == false)){
+	    $cuisine_count++;
+	  $cuisine[] = $row[7];
+	} else {
+	  $cuisine_id = NULL;
+	}
+	
+	//Check if violation exists in db; insert if doesn't exist
+	if(empty($violation) || in_array($row[10], array_column($violation, 'code')) == false){
+	  $violation_count++;
+	  $violation[] = array(
+	    'code'=>$row[10],
+	    'description'=>$row[11]
+	  );
+	} else {
+	  $violation_id = NULL;
+	}
+	//Check if inspection type exists; insert if doesn't exist
+	if(empty($inspection_type) || (in_array($row[17], $inspection_type) == false )){
+	  $inspection_type_count++;
+	  $inspection_type[] = $row[17];
+	} else {
+	  $inspection_id = NULL;
+	}
+      }
+      $rowNum++;
+    }
+  }
+  fwrite($loghandle, "Number of cuisine rows written in db: $cuisine_count \n");
+  fwrite($loghandle, "Number of violation rows written in db: $violation_count \n");
+  fwrite($loghandle, "Number of inspections type rows written in db: $inspection_type_count \n\n");
+}
+test_data_transformation();
+
+
  * Test api call with wrong credentials
+/** 
  */
 function testapi(){
   GLOBAL $LOGFILE;
