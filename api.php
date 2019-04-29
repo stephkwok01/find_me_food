@@ -16,7 +16,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_
 //To get post data from curl request
 $post = json_decode(@file_get_contents("php://input"), true);
 
-//POST call to get other types of restaurants
+//POST REQUEST to get other types of restaurants
 if(isset($post['cuisine'])){
   $cuisine = $post['cuisine'];
     //Check headers & content type
@@ -29,7 +29,8 @@ if(isset($post['cuisine'])){
   }
   die(json_encode(['success'=>TRUE, 'restaurants'=>$restaurants]));
 } 
-//GET request to only get thai restaurants
+
+//GET REQUEST to only get thai restaurants
 else {
   //Check headers & content type
   if ($_SERVER['HTTP_ACCEPT'] != 'application/json') die(json_encode(['success'=>false, 'error'=>"Invalid Accept header supplied. Expecting application/json"]));

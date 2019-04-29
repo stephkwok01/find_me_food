@@ -135,7 +135,7 @@ function test_data_accuracy(){
     }
   }
   if($success == true){
-    fwrite($loghandle, "No difference between db data and csv data\n");
+    fwrite($loghandle, "No difference between db data and csv data\n\n");
   }
   return $success;
 }
@@ -160,10 +160,10 @@ function check_data_completeness(){
     return false;
   }
   if($result[0]['count'] == 383522){
-    fwrite($loghandle, "Complete set of data");
+    fwrite($loghandle, "Complete set of data\n\n");
     return true;
   }
-  fwrite($loghandle, "Incomplete set of data");
+  fwrite($loghandle, "Incomplete set of data\n\n");
   return false;
 }
 $complete_res = check_data_completeness();
@@ -193,10 +193,10 @@ function testapi(){
 
   $result = json_decode(curl_exec($ch),true);
   if($result['error']){
-    fwrite($loghandle, "Unauthorized Access; test successful");
+    fwrite($loghandle, "Unauthorized Access; test successful\n\n");
     return true;
   }
-  fwrite($loghandle, "authentication failed");
+  fwrite($loghandle, "authentication failed\n\n");
   return false;
  
 }

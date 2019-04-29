@@ -64,5 +64,3 @@ include 'dblib.php';
       return FALSE;
     }
   }
-
-

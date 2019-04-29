@@ -33,7 +33,7 @@ class etl{
       //Read csv file
       if (($handle = fopen($this->filename, 'r')) !== FALSE)
       {
-	while (($row = fgetcsv($handle)) !== FALSE && $rowNum < 6000) 
+	while (($row = fgetcsv($handle)) !== FALSE) 
 	{
 	  if($rowNum >0){
 	    //Check if cuisine exists in db; insert if doesn't exist
