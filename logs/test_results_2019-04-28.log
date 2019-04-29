@@ -1,0 +1,33 @@
+----------Test duplicate: checkDupliate()----------
+No duplicated data in tables: restaurant, inspection_type, violation, cuisine
+
+----------Test data accuracy: test_data_accuracy()----------
+difference between csv data and database for camis 40365904:
+grade->  sewage disposal system in disrepair or not functioning properly.
+
+----------Test duplicate: checkDupliate()----------
+No duplicated data in tables: restaurant, inspection_type, violation, cuisine
+
+----------Test data accuracy: test_data_accuracy()----------
+difference between csv data and database for camis 40365904:
+grade->  sewage disposal system in disrepair or not functioning properly.
+
+----------Test duplicate: checkDupliate()----------
+No duplicated data in tables: restaurant, inspection_type, violation, cuisine
+
+----------Test data accuracy: test_data_accuracy()----------
+difference between csv data and database for camis 40365904:
+grade->  sewage disposal system in disrepair or not functioning properly.
+
+----------Test duplicate: checkDupliate()----------
+No duplicated data in tables: restaurant, inspection_type, violation, cuisine
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+----------Test duplicate: checkDupliate()----------
+No duplicated data in tables: restaurant, inspection_type, violation, cuisine
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data

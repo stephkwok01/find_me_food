@@ -26,13 +26,14 @@ class etl{
       $inspection_type = array();
       $cuisine = array();
       $camis = array();
+      $rowNum = 0;
       
       DBConnect();
       $start_time = new datetime();
       //Read csv file
       if (($handle = fopen($this->filename, 'r')) !== FALSE)
       {
-	while (($row = fgetcsv($handle)) !== FALSE) 
+	while (($row = fgetcsv($handle)) !== FALSE && $rowNum < 6000) 
 	{
 	  if($rowNum >0){
 	    //Check if cuisine exists in db; insert if doesn't exist
@@ -56,7 +57,10 @@ class etl{
 	    if(empty($inspection_type) || (in_array($row[17], $inspection_type) == false )){
 	      $inspection_id = DBQuery("INSERT INTO inspection_type(`type_name`) VALUES (?)", $row[17]);
 	      $inspection_type[$inspection_id] = $row[17];
+	    } else {
+	      $inspection_id = NULL;
 	    }
+	    
 	    //Insert restaurant information 
 	    //check if restaurant camis exists in database
 	    if(empty($camis) || (in_array($row[0], $camis) == false)){
@@ -119,5 +123,6 @@ $FK_inspection_id);
     }
   }
 }
+
 
 
