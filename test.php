@@ -83,7 +83,7 @@ function checkDupliate() {
   if ($result->num_rows > 0) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-	 fwrite($loghandle, "Duplicated description: ".$row['description']. ", in violation\n");
+	 fwrite($loghandle, "Duplicated description: ".$row['code']. ", in violation\n");
       }
       $success = false;
   }
@@ -93,7 +93,7 @@ function checkDupliate() {
   if ($result->num_rows > 0) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-	 fwrite($loghandle, "Duplicated description: ".$row['description']. ", in inspection_type\n");
+	 fwrite($loghandle, "Duplicated description: ".$row['type_name']. ", in inspection_type\n");
       }
       $success = false;
   }
@@ -103,7 +103,7 @@ function checkDupliate() {
   if ($result->num_rows > 0) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-	 fwrite($loghandle, "Duplicated description: ".$row['description']. ", in restaurant\n");
+	 fwrite($loghandle, "Duplicated description: ".$row['camis']. ", in restaurant\n");
       }
       $success = false;
   }

@@ -51,7 +51,7 @@ class etl{
 	      $cuisine_id = NULL;
 	    }
 	    //Check if violation exists in db; insert if doesn't exist
-	    if(empty($violation) || in_array($row[10], array_column($violation, 'code')) == false){
+	    if(empty($violation) || (in_array($row[10], array_column($violation, 'code')) == false)){
 	      $conn->query("INSERT INTO violation (`code`, `description`) VALUES ('".$row[10]."','".$row[11]."')");
 	      $violation_id = $conn->insert_id;
 	      $violation[$violation_id] = array(
@@ -99,8 +99,9 @@ class etl{
 	      $result = $conn->query(
 		"SELECT violation_id FROM violation
 		WHERE code = '".$row[10]."'");
-		$res = $result->fetch_assoc();
-		$FK_violation_id = $res['violation_id'];
+		while($res = $result->fetch_assoc()){
+		  $FK_violation_id = $res['violation_id'];
+		}
 	    }
 	    if($inspection_id != NULL){
 	      
@@ -137,3 +138,6 @@ class etl{
   }
 }
 
+// $filePath = "../DOHMH_New_York_City_Restaurant_Inspection_Results.csv";
+// $file = new etl($filePath);
+// $result = $file->csv_to_db(); 
