@@ -2,10 +2,6 @@
 //Model function to fetch data from db	
 include 'config.php';
 
-
-GLOBAL $SERVER, $USERNAME, $PASSWORD, $DB;
-$conn = new mysqli($SERVER, $USERNAME, $PASSWORD, $DB);
-
 /**
  * Gets a list of restaurants that satisfy the criteria
  * @return array  FALSE or array (can be empty)
