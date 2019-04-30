@@ -35,8 +35,7 @@ class etl{
       $cuisine = array();
       $camis = array();
       $rowNum = 0;
-      
-      $start_time = new datetime();
+
       //Read csv file
       if (($handle = fopen($this->filename, 'r')) !== FALSE)
       {
@@ -126,8 +125,7 @@ class etl{
 	  }
 	  $rowNum++;
 	}
-	$end_time = new datetime();
-	return $end_time - $start_time;
+	return true;
       } else {
 	return false;
       }
@@ -138,4 +136,5 @@ class etl{
     }
   }
 }
+
 

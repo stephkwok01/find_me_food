@@ -7,7 +7,6 @@ include 'config.php';
  */
 $today = date("Y-m-d");
 $LOGFILE = 'test_results_'.$today.'.log';
-var_dump(file_exists('logs/'.$LOGFILE));
 if(file_exists('logs/'.$LOGFILE) == false){
   $loghandle = fopen('logs/'.$LOGFILE, 'w') or die('cannot open file');
 }

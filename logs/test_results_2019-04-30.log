@@ -41,3 +41,72 @@ Number of inspections type rows written in db: 6
 ----------Test API call with wrong credentials: testapi()----------
 Unauthorized Access; test successful
 
+----------Test heroku database connection: checkDBConnection()----------
+host: us-cdbr-iron-east-02.cleardb.net 
+username: ba3b92dc9036d8 
+password: 95cf1774 
+database name: heroku_8d7e8477e71c47a 
+Heroku database connected 
+
+----------Test duplicate: checkDupliate()----------
+No duplicated data in tables: restaurant, inspection_type, violation, cuisine
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Error: DB error has occurred
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test heroku database connection: checkDBConnection()----------
+host: us-cdbr-iron-east-02.cleardb.net 
+username: ba3b92dc9036d8 
+password: 95cf1774 
+database name: heroku_8d7e8477e71c47a 
+Heroku database connected 
+
+----------Test duplicate: checkDupliate()----------
+No duplicated data in tables: restaurant, inspection_type, violation, cuisine
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Error: DB error has occurred
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test heroku database connection: checkDBConnection()----------
+host: us-cdbr-iron-east-02.cleardb.net 
+username: ba3b92dc9036d8 
+password: 95cf1774 
+database name: heroku_8d7e8477e71c47a 
+Heroku database connected 
+
+----------Test duplicate: checkDupliate()----------
+No duplicated data in tables: restaurant, inspection_type, violation, cuisine
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Error: DB error has occurred
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
