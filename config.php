@@ -1,6 +1,6 @@
 <?php
 //Database configuration
-$url = parse_url("mysql://ba3b92dc9036d8:95cf1774@us-cdbr-iron-east-02.cleardb.net/heroku_8d7e8477e71c47a?reconnect=true");
+$url = parse_url("mysql://bbbd3156485d7a:8eaae967@us-cdbr-iron-east-02.cleardb.net/heroku_ff5309d0caee90b?reconnect=true");
 
 $SERVER = $url["host"];
 $USERNAME = $url["user"];
