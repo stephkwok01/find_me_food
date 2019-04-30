@@ -1,0 +1,211 @@
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+
+Data cound: ----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+
+Data cound: ----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+
+Data count: 
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+Data count:  
+
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+Data count:  
+
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+Data count:  
+
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+Data count:  
+
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+Data count:  
+
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+Data count: 2228 
+
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+Data count: 2228 
+
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+
+----------Test duplicate: checkDupliate()----------
+Duplicated description: , in violation
+
+----------Test data accuracy: test_data_accuracy()----------
+No difference between db data and csv data
+
+----------Test data completeness: check_data_completeness()----------
+Incomplete set of data
+Data count: 2228 
+
+----------Test data transformation: test_data_transformation()----------
+Number of cuisine rows written in db: 2 
+Number of violation rows written in db: 20 
+Number of inspections type rows written in db: 6 
+
+----------Test API call with wrong credentials: testapi()----------
+Unauthorized Access; test successful
+

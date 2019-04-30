@@ -1,19 +1,19 @@
 <?php
 include_once 'etl.php';
-include_once 'dblib.php';
+include 'config.php';
 
 /** 
  * Create log file for test results in logs/ directory
  */
 $today = date("Y-m-d");
 $LOGFILE = 'test_results_'.$today.'.log';
-
+// $loghandle = fopen('logs/'.$LOGFILE, 'w') or die('cannot open file');
 /** 
  * Test ETL function - writing data to database
  */
 $filePath = "../DOHMH_New_York_City_Restaurant_Inspection_Results.csv";
 $file = new etl($filePath);
-// $result = $file->csv_to_db();
+// $result = $file->csv_to_db();  TODO: uncomment it to test etl function 
 
 /** 
  * duplicate test for different tables in the db
@@ -21,47 +21,58 @@ $file = new etl($filePath);
  */
 function checkDupliate() {
   GLOBAL $LOGFILE;
+  //Connect to Heroku database
+  GLOBAL $SERVER, $USERNAME, $PASSWORD, $DB;
+  $conn = new mysqli($SERVER, $USERNAME, $PASSWORD, $DB);
+  if ($conn->connect_error) {
+    return("Connection failed: " . $conn->connect_error);
+  } 
+  
   //Open log file 
   $loghandle = fopen('logs/'.$LOGFILE, 'a+') or die('cannot open file');
   fwrite($loghandle, "----------Test duplicate: checkDupliate()----------\n");
-  
-  DBConnect();
+ 
   $success = true;
   //Finding dupicate in cuisine
-  $result = DBQuery(
+  $result = $conn->query(
     "SELECT description, COUNT(*) AS c FROM cuisine GROUP BY description HAVING c >1 ");
-  if(count($result) > 0){
-    foreach($result as $res){
-      fwrite($loghandle, "Duplicated description: ".$res['description']. ", in cuisine\n");
-    }
-    $success = false;
+  if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+	 fwrite($loghandle, "Duplicated description: ".$row['description']. ", in cuisine\n");
+      }
+      $success = false;
   }
+
   //Find ducplicate in violation code
-  $result = DBQuery(
+  $result = $conn->query(
     "SELECT code, COUNT(*) AS c FROM violation GROUP BY code having c>1;");
-  if(count($result) > 0){
-    foreach($result as $res){
-      fwrite($loghandle,"Duplicate code: ".$res['code'].", in violation\n");
-    }
-    $success = false;
+  if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+	 fwrite($loghandle, "Duplicated description: ".$row['description']. ", in violation\n");
+      }
+      $success = false;
   }
   //Find duplicate in inspection type
-  $result = DBQuery(
+  $result = $conn->query(
     "SELECT type_name, COUNT(*) AS c FROM inspection_type GROUP BY type_name having c>1");
-  if(count($result) > 0){
-    foreach($result as $res){
-      fwrite($loghandle,"Duplicate inspection type: ". $res['type_name'].", in inspection_type\n");
-    }
-    $success = false;
+  if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+	 fwrite($loghandle, "Duplicated description: ".$row['description']. ", in inspection_type\n");
+      }
+      $success = false;
   }
   //Find duplicate in restaurant names
-  $result = DBQuery(
+  $result = $conn->query(
     "SELECT camis, count(*) AS c FROM restaurant GROUP BY camis having c>1");
-  if(count($result) > 0){
-    foreach($result as $res){
-      fwrite($loghandle,"Duplicate restaurant camis: ".$res['camis'].", in restaurant\n");
-    }
-    $success = false;
+  if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+	 fwrite($loghandle, "Duplicated description: ".$row['description']. ", in restaurant\n");
+      }
+      $success = false;
   }
   if($success == true){
     fwrite($loghandle, "No duplicated data in tables: restaurant, inspection_type, violation, cuisine\n");
@@ -80,6 +91,13 @@ $dup_result = checkDupliate();
  */	
 function test_data_accuracy(){
   GLOBAL $LOGFILE;
+  //Connect to Heroku database
+  GLOBAL $SERVER, $USERNAME, $PASSWORD, $DB;
+  $conn = new mysqli($SERVER, $USERNAME, $PASSWORD, $DB);
+  if ($conn->connect_error) {
+    return("Connection failed: " . $conn->connect_error);
+  } 
+  
   //Open log file 
   $loghandle = fopen('logs/'.$LOGFILE, 'a+') or die('cannot open file');
   fwrite($loghandle, "----------Test data accuracy: test_data_accuracy()----------\n");
@@ -88,7 +106,7 @@ function test_data_accuracy(){
   $filename = 'test_data_DOHMH.csv';
   $rowNum = 0;
   $success = true;
-  DBConnect();
+
   if (($handle = fopen($filename, 'r')) !== FALSE)
   {
     while (($row = fgetcsv($handle)) !== FALSE)
@@ -110,7 +128,7 @@ function test_data_accuracy(){
 	  'grade'=>$row[14]
 	);
 	//Get restaurant info from database to see if it matches
-	$result = DBQuery(
+	$result = $conn->query(
 	  "SELECT name, phone, cuisine.description, date, inspection_type.type_name as inspection_type,
 	  violation.code AS violation_code, grade
 	  FROM restaurant
@@ -118,16 +136,18 @@ function test_data_accuracy(){
 	  JOIN inspection ON FK_restaurant_id = restaurant_id
 	  JOIN violation ON FK_violation_id = violation_id 
 	  JOIN inspection_type ON FK_inspection_type_id = inspection_type_id
-	  WHERE camis = ? AND date = ? AND violation.code = ?", $camis, $newDate, $violation_code);
-	if(count($result) == 1){
-	  $diff = array_diff($csvData, $result[0]);
-	  if(!empty($diff)){
-	    $success = false;
-	    fwrite($loghandle, "difference between csv data and database for camis ".$camis.":\n" );
-	    foreach($diff as $key=>$val){
-	      fwrite($loghandle, $key."-> ".$val."\n");
+	  WHERE camis = '".$camis."' AND date = '".$newDate."' AND violation.code = '".$violation_code."'");
+	if ($result->num_rows == 1) {
+	  while($res = $result->fetch_assoc()) {
+	    $diff = array_diff($csvData, $res);
+	    if(!empty($diff)){
+	      $success = false;
+	      fwrite($loghandle, "difference between csv data and database for camis ".$camis.":\n" );
+	      foreach($diff as $key=>$val){
+		fwrite($loghandle, $key."-> ".$val."\n");
+	      }
+	      fwrite($loghandle,"\n");
 	    }
-	    fwrite($loghandle,"\n");
 	  }
 	}
       }
@@ -147,23 +167,36 @@ $accuracy_res = test_data_accuracy();
  */
 function check_data_completeness(){
   GLOBAL $LOGFILE;
+  //Connect to Heroku database
+  GLOBAL $SERVER, $USERNAME, $PASSWORD, $DB;
+  $conn = new mysqli($SERVER, $USERNAME, $PASSWORD, $DB);
+  if ($conn->connect_error) {
+    return("Connection failed: " . $conn->connect_error);
+  } 
+  
   //Open log file 
   $loghandle = fopen('logs/'.$LOGFILE, 'a+') or die('cannot open file');
   fwrite($loghandle, "----------Test data completeness: check_data_completeness()----------\n");
   
   //Connect to database and check count
-  DBConnect();
-  $result = DBQuery(
+  $result = $conn->query(
     "SELECT COUNT(*) AS count FROM inspection");
-  if(count($result) != 1){
+  if ($result->num_rows != 1) {
     fwrite($loghandle, "Error: DB error has occurred\n");
     return false;
   }
-  if($result[0]['count'] == 383522){
-    fwrite($loghandle, "Complete set of data\n\n");
-    return true;
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    $count = $row['count'];
+    if($count == 383522){
+      fwrite($loghandle, "Complete set of data\n\n");
+      return true;
+    } else {
+      fwrite($loghandle, "Incomplete set of data\n");
+      fwrite($loghandle, "Data count: $count \n\n");
+    }
   }
-  fwrite($loghandle, "Incomplete set of data\n\n");
+
   return false;
 }
 $complete_res = check_data_completeness();
@@ -233,8 +266,8 @@ function test_data_transformation(){
 test_data_transformation();
 
 
- * Test api call with wrong credentials
 /** 
+ * Test api call with wrong credentials to make sure that users are properly authenticated
  */
 function testapi(){
   GLOBAL $LOGFILE;
@@ -242,7 +275,7 @@ function testapi(){
   $loghandle = fopen('logs/'.$LOGFILE, 'a+') or die('cannot open file');
   fwrite($loghandle, "----------Test API call with wrong credentials: testapi()----------\n");
   $url = 'http://charles.plumgroup.com/~skwok/personal/find_me_food/api.php';
-
+  
   $username = 'wronguser';
   $password = 'asdf';
 
