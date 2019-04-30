@@ -6,19 +6,6 @@ include 'config.php';
 GLOBAL $SERVER, $USERNAME, $PASSWORD, $DB;
 $conn = new mysqli($SERVER, $USERNAME, $PASSWORD, $DB);
 
-  
-// $sql = "CREATE TABLE IF NOT EXISTS violation(
-// 	violation_id INT(11) NOT NULL primary key auto_increment,
-// 	code varchar(16),
-// 	description text)";
-// 
-// if($conn->query($sql)== TRUE){
-//   echo "success";
-// }
-// else {
-//   echo "Fail";
-// }
-
 /**
  * Gets a list of restaurants that satisfy the criteria
  * @return array  FALSE or array (can be empty)
@@ -36,7 +23,7 @@ $conn = new mysqli($SERVER, $USERNAME, $PASSWORD, $DB);
 	"SELECT restaurant_id, name, boro, building, street, zipcode, phone, MAX(grade_date) as 'grade_date', grade FROM restaurant
 	LEFT JOIN cuisine ON FK_cuisine_id = cuisine_id
 	LEFT JOIN inspection ON restaurant_id = FK_restaurant_id
-	WHERE (grade = 'A' OR grade = 'B') AND cuisine.description = 'Bakery'
+	WHERE (grade = 'A' OR grade = 'B') AND cuisine.description = 'Thai'
 	GROUP BY restaurant_id");
       while($row = $result->fetch_assoc()) {
 	$restaurants[] = $row;

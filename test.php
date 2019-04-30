@@ -7,13 +7,47 @@ include 'config.php';
  */
 $today = date("Y-m-d");
 $LOGFILE = 'test_results_'.$today.'.log';
-// $loghandle = fopen('logs/'.$LOGFILE, 'w') or die('cannot open file');
+var_dump(file_exists('logs/'.$LOGFILE));
+if(file_exists('logs/'.$LOGFILE) == false){
+  $loghandle = fopen('logs/'.$LOGFILE, 'w') or die('cannot open file');
+}
+
 /** 
  * Test ETL function - writing data to database
  */
 $filePath = "../DOHMH_New_York_City_Restaurant_Inspection_Results.csv";
 $file = new etl($filePath);
 // $result = $file->csv_to_db();  TODO: uncomment it to test etl function 
+
+/** 
+ * Test database connection 
+ */
+function checkDBConnection(){
+  GLOBAL $LOGFILE;
+  //Connect to Heroku database
+  GLOBAL $SERVER, $USERNAME, $PASSWORD, $DB;
+  $conn = new mysqli($SERVER, $USERNAME, $PASSWORD, $DB);
+  
+  //Open log file 
+  $loghandle = fopen('logs/'.$LOGFILE, 'a+') or die('cannot open file');
+  fwrite($loghandle, "----------Test heroku database connection: checkDBConnection()----------\n");
+  
+  //Print db credentials
+  fwrite($loghandle, "host: $SERVER \n");
+  fwrite($loghandle, "username: $USERNAME \n");
+  fwrite($loghandle, "password: $PASSWORD \n");
+  fwrite($loghandle, "database name: $DB \n");
+  
+  if ($conn->connect_error) {
+    fwrite($loghandle, "Connection failed: " . $conn->connect_error);
+    ("Connection failed: $conn->connect_error \n\n");
+    return false;
+  }
+  fwrite($loghandle, "Heroku database connected \n\n");
+  return true;
+}
+checkDBConnection();
+
 
 /** 
  * duplicate test for different tables in the db

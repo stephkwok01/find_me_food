@@ -9,6 +9,9 @@ $url = 'http://charles.plumgroup.com/~skwok/personal/find_me_food/api.php';
 $username = 'testuser';
 $password = 'asdf';
 
+/**
+ * Curl request to get only thai retaurants
+ */
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 curl_setopt($ch, CURLOPT_USERPWD, $username.":".$password);
@@ -24,7 +27,7 @@ var_dump($result);
 /** 
  * Curl request to get different cuisine that matches the criteria
  */
-//  $type = 'burgers';
+//  $type = 'jewish';
 // $post = json_encode(array('cuisine'=>$type));
 // $ch = curl_init();
 // curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
